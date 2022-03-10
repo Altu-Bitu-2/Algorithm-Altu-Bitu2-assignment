@@ -11,26 +11,25 @@ struct coordinate
 };
 
 // 비교 함수
-bool cmp(const coordinate &a, const coordinate &b)
+bool cmp(pair<int, int> a, pair<int, int> b)
 {
-    if (a.y != b.y)
+    if (a.second != b.second)
     {
-        return a.y < b.y;
+        return a.second < b.second;
     }
-    else
-        return a.x < b.x;
+    return a.first < b.first; // else를 굳이 쓸 필요 x
 }
 
 int main()
 {
     int n;
     cin >> n;
-    vector<coordinate> v(n); // 벡터 초기화
+    vector<pair<int, int>> v(n); // 벡터 초기화
 
     // 입력
     for (int i = 0; i < n; i++)
     { // x,y 좌표
-        cin >> v[i].x >> v[i].y;
+        cin >> v[i].first >> v[i].second;
     }
 
     // 연산
@@ -39,7 +38,7 @@ int main()
     // 출력
     for (int i = 0; i < n; i++)
     {
-        cout << v[i].x << ' ' << v[i].y << '\n';
+        cout << v[i].first << ' ' << v[i].second << '\n';
     }
     return 0;
 }
