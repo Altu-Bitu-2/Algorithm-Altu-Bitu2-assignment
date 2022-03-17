@@ -13,7 +13,7 @@ int main()
 
     // 입력
     cin >> s;
-
+    
     // 각각의 알파벳 개수 헤아리기
     for (int i = 0; i < s.size(); i++)
     {
