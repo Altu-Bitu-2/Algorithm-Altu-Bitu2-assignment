@@ -6,7 +6,6 @@ using namespace std;
 
 int main()
 {
-
     string s;
     string even, odd;
     int cnt = 0;

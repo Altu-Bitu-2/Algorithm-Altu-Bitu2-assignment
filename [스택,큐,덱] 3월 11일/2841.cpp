@@ -41,7 +41,7 @@ int main()
             v[m].pop();
             cnt++;
         }
-        
+
         // top의 값이 연주해야하는 음보다 낮을때 -> 그냥 push 한다
         if(v[m].top() < k && !v[m].empty()){
             v[m].push(k);

@@ -30,7 +30,6 @@ int main()
     // 입력
     int n, k;
     cin >> n >> k;
-
     queue<int> q;
 
     // 큐에 순서대로 원소 삽입

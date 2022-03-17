@@ -71,7 +71,6 @@ int main()
     cin >> n;
     for (int i = 0; i < n; i++)
     {
-
         int k;
         cin >> k;
         v.push_back(k);
