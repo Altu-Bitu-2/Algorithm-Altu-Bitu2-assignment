@@ -1,66 +1,86 @@
 #include <iostream>
 #include <vector>
+#include <map>
 #include <math.h>
 #include <utility>
 #include <algorithm> // sort 함수 사용
 
 using namespace std;
 
-int n;
 
 // 산술 평균 함수
-double arithmeticMean(vector<int> v)
+double arithmeticMean(vector<int> v, int n)
 {
     double sum = 0;
     for (int i = 0; i < n; i++)
     {
         sum += v[i];
     }
-    return sum / n;
+    double result = (double)sum / n;
+    return (int)round(result);
 }
 
 // 중앙값 함수
-int meidan(vector<int> v)
+int meidan(vector<int> v, int n)
 {
     sort(v.begin(), v.end());
 
-    return v[n/2];
+    return v[n / 2];
+}
+
+// 최빈값을 구하기 위해 사용되는 함수
+bool cmp(const pair<int, int> &a, const pair<int, int> &b)
+{
+    if (a.second != b.second)
+    {
+        return a.second > b.second;
+    }
+    else
+        return a.first < b.first;
 }
 
 // 최빈값 함수
-int mode(vector<int> v)
+int mode(map<int, int> m)
 {
+    vector<pair<int, int>> frequency(m.begin(), m.end());
+    sort(frequency.begin(), frequency.end(), cmp);
 
+    if (frequency[0].second == frequency[1].second)
+    {
+        return frequency[1].first;
+    }
+    else
+        return frequency[0].first;
 }
 
 // 범위 함수
-int range(vector<int> v)
+int range(vector<int> v, int n)
 {
     sort(v.begin(), v.end());
-    int rang = v[n-1] - v[0]; 
+    int rang = v[n - 1] - v[0];
     return rang;
 }
 
 int main()
-{
-
+{   
+    int n;
     vector<int> v;
+    map<int, int> m;
 
     // 입력
     cin >> n;
-    for(int i = 0; i < n;i++) // 여기서 for문 대신 while(n--)를 사용하면 오류가 나는데 왜 그런걸까요?
-                              // 이 문제 뿐만 아니라 다른 문제에서도 그렇습니다.. 언제 for문을 사용하고 언제 while을 사용하나요?
+    for (int i = 0; i < n; i++)
     {
 
-        int m;
-        cin >> m;
-        v.push_back(m);
+        int k;
+        cin >> k;
+        v.push_back(k);
+        m[k]++;
     }
 
-    cout << "=========\n";
-    cout << round(arithmeticMean(v)) << '\n';
-    cout << meidan(v) << '\n';
-    // cout << mode(v) << '\n';
-    cout << range(v) << '\n';
-    
+    // 출력
+    cout << arithmeticMean(v, n) << '\n';
+    cout << meidan(v, n) << '\n';
+    cout << mode(m) << '\n';
+    cout << range(v, n) << '\n';
 }

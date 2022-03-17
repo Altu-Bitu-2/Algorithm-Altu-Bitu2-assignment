@@ -8,6 +8,10 @@ using namespace std;
 
 int main()
 {
+    ios_base :: sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
     int n, p;
     int cnt = 0;
     cin >> n >> p;
@@ -16,27 +20,34 @@ int main()
 
     while (n--)
     {
-        int m;
+        int m; 
         int k = 0;
         cin >> m >> k;
 
-        if (v[m].empty()) // 스택이 비어있을 때
+        // 스택이 비어있을 때
+        if (v[m].empty()) 
         {
             v[m].push(k);  
             cnt++;
-            break;
         }
 
-        if (v[m].top() == k) // top의 값과 연주하는 음이 같을 때 (연산 x)
-            break;
+        // 연산 안하는 코드는 굳이 작성할 필요 없음
+        // if (v[m].top() == k) // top의 값과 연주하는 음이 같을 때 (연산 x)
+        //     break;
 
-        while (v[m].top() > k) // top의 값이 연주해야하는 음보다 높을 때
+        // top의 값이 연주해야하는 음보다 높을 때
+        while (v[m].top() > k && !v[m].empty()) 
         {
             v[m].pop();
             cnt++;
         }
-        v[m].push(k);
-        cnt++;
+        
+        // top의 값이 연주해야하는 음보다 낮을때 -> 그냥 push 한다
+        if(v[m].top() < k && !v[m].empty()){
+            v[m].push(k);
+            cnt++;  
+        }
+
     }
 
     cout << cnt << '\n';

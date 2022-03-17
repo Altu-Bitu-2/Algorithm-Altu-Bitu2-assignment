@@ -8,26 +8,8 @@ using namespace std;
 // 원리 자체를 이해하기까지 오래 걸렸던 문제...
 // 앞뒤로 자유롭게 push, pop 해야하므로 deque 이용
 
-int main()
+int cardReverse(vector<int> v, deque<int> dq, int n)
 {
-
-    ios_base ::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-
-    int n = 0;
-    vector<int> v; // 1e6: int 범위안
-    deque<int> dq;
-
-    // 입력
-    cin >> n;
-    for (int i = 0; i < n; i++)
-    {
-        int x;
-        cin >> x;
-        v.push_back(x);
-    }
-
     reverse(v.begin(), v.end()); // 입력을 정반대로 정렬 -> 했던걸 정반대로 되돌린다고 생각하기
 
     // 문제와 똑같이 덱에 넣어주기 !!
@@ -54,6 +36,30 @@ int main()
             dq.push_back(i + 1);
         }
     }
+
+    return 0;
+}
+int main()
+{
+
+    ios_base ::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int n = 0;
+    vector<int> v; // 1e6: int 범위안
+    deque<int> dq;
+
+    // 입력
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        int x;
+        cin >> x;
+        v.push_back(x);
+    }
+
+    cardReverse(v, dq, n);
 
     // 출력
     while (!dq.empty())
